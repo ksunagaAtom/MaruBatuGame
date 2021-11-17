@@ -7,6 +7,7 @@ class MyFrame(tk.Frame):
         self.turnFlag = 1
         self.turnCount = 0
         self.board = [[0,0,0],[0,0,0],[0,0,0]]
+        self.boardFlag = [[True]*3]*3
 
         self.b1 = tk.Button(self, text='　', command=lambda:self.key(1,0,0))
         self.b2 = tk.Button(self, text='　', command=lambda:self.key(2,0,1))
@@ -17,6 +18,7 @@ class MyFrame(tk.Frame):
         self.b7 = tk.Button(self, text='　', command=lambda:self.key(7,2,0))
         self.b8 = tk.Button(self, text='　', command=lambda:self.key(8,2,1))
         self.b9 = tk.Button(self, text='　', command=lambda:self.key(9,2,2))
+        self.b_reset = tk.Button(self, text='C', command=lambda:self.c_key())
         self.message = tk.Label(self, text='メッセージ')
 
 
@@ -30,6 +32,7 @@ class MyFrame(tk.Frame):
         self.b8.grid(row=3, column=1)
         self.b9.grid(row=3, column=2)
         self.message.grid(row=4, column=0, columnspan=4)
+        self.b_reset.grid(row=5, column=0)
 
     #水平方向での勝ちの判定
     def check_board_horizontal(self,turnFlag):
@@ -67,7 +70,7 @@ class MyFrame(tk.Frame):
 
     def key(self,n,row,column):
         #keyメソッドの制限
-        if self.turnCount < 9:
+        if self.turnCount < 9 and self.boardFlag[row][column] == True:
             #表示文字の入れ替え
             if self.turnFlag == 1:
                 text = "○"
@@ -115,7 +118,25 @@ class MyFrame(tk.Frame):
             elif self.turnFlag == -1:
                 self.turnFlag = 1
 
+            self.boardFlag[row][column] = False
             self.turnCount += 1
+        
+    #ゲームの初期化
+    def c_key(self):
+        self.turnFlag = 1
+        self.turnCount = 0
+        self.board = [[0,0,0],[0,0,0],[0,0,0]]
+        self.b1['text'] = '　'
+        self.b2['text'] = '　'
+        self.b3['text'] = '　'
+        self.b4['text'] = '　'
+        self.b5['text'] = '　'
+        self.b6['text'] = '　'
+        self.b7['text'] = '　'
+        self.b8['text'] = '　'
+        self.b9['text'] = '　'
+        self.boardFlag = [[True]*3]*3
+        self.message['text'] = 'ゲームをリセットしました'
 
 
 #メインプログラム
