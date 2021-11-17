@@ -66,51 +66,55 @@ class MyFrame(tk.Frame):
         return False
 
     def key(self,n,row,column):
-        #表示文字の入れ替え
-        if self.turnFlag == 1:
-            text = "○"
-        elif self.turnFlag == -1:
-            text = "✗"
-        #ボタンの表示文字切り替え
-        if n == 1:
-            self.b1['text'] = text
-        elif n == 2:
-            self.b2['text'] = text
-        elif n == 3:
-            self.b3['text'] = text
-        elif n == 4:
-            self.b4['text'] = text
-        elif n == 5:
-            self.b5['text'] = text
-        elif n == 6:
-            self.b6['text'] = text
-        elif n == 7:
-            self.b7['text'] = text
-        elif n == 8:
-            self.b8['text'] = text
-        elif n == 9:
-            self.b9['text'] = text
-
-        #リストに代入
-        self.board[row][column] = self.turnFlag
-        print(self.board)
-        
-        #勝敗判定
-        WoL = self.is_win_simple(self.turnFlag)
-        print(WoL)
-
-        #メッセージに勝者表示
-        if WoL == True:
+        if self.turnCount < 9:
+            #表示文字の入れ替え
             if self.turnFlag == 1:
-                self.message['text'] = '○の勝利'
+                text = "○"
             elif self.turnFlag == -1:
-                self.message['text'] = '✗の勝利'
-        
-        #ターン入れ替え
-        if self.turnFlag == 1:
-            self.turnFlag = -1
-        elif self.turnFlag == -1:
-            self.turnFlag = 1
+                text = "✗"
+            #ボタンの表示文字切り替え
+            if n == 1:
+                self.b1['text'] = text
+            elif n == 2:
+                self.b2['text'] = text
+            elif n == 3:
+                self.b3['text'] = text
+            elif n == 4:
+                self.b4['text'] = text
+            elif n == 5:
+                self.b5['text'] = text
+            elif n == 6:
+                self.b6['text'] = text
+            elif n == 7:
+                self.b7['text'] = text
+            elif n == 8:
+                self.b8['text'] = text
+            elif n == 9:
+                self.b9['text'] = text
+
+            #リストに代入
+            self.board[row][column] = self.turnFlag
+            print(self.board)
+            
+            #勝敗判定
+            WoL = self.is_win_simple(self.turnFlag)
+            print(WoL)
+            print('turnCount',self.turnCount)
+
+            #メッセージに勝者表示
+            if WoL == True:
+                if self.turnFlag == 1:
+                    self.message['text'] = '○の勝利'
+                elif self.turnFlag == -1:
+                    self.message['text'] = '✗の勝利'
+            
+            #ターン入れ替え
+            if self.turnFlag == 1:
+                self.turnFlag = -1
+            elif self.turnFlag == -1:
+                self.turnFlag = 1
+
+            self.turnCount += 1
 
 
 #メインプログラム
