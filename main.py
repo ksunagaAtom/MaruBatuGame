@@ -146,7 +146,7 @@ class MyFrame(tk.Frame):
         self.boardFlag = [[True]*3,[True]*3,[True]*3]
         self.boardRe = []
         self.message['text'] = 'ゲームをリセットしました'
-
+"""
     #ゲームのリプレイ
     def r_key(self):
         print('ボタンの文字初期化')
@@ -187,9 +187,7 @@ class MyFrame(tk.Frame):
                 self.b9['text'] = text
             print('リプレイループ',i,' 表示文字は',text)
         self.message['text'] = 'リプレイ終了'
-        
-            
-
+"""
 
 #メインプログラム
 root = tk.Tk()
