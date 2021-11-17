@@ -116,6 +116,10 @@ class MyFrame(tk.Frame):
                     self.message['text'] = '○の勝利'
                 elif self.turnFlag == -1:
                     self.message['text'] = '✗の勝利'
+                print('boardFlagをすべてFalseに')
+                for i in range(len(self.boardFlag)):
+                    for j in range(len(self.boardFlag[i])):
+                        self.boardFlag[i][j] = False
             
             #リプレイ配列に押されたボタンと挿入
             self.boardRe.append(n)
@@ -146,7 +150,7 @@ class MyFrame(tk.Frame):
         self.boardFlag = [[True]*3,[True]*3,[True]*3]
         self.boardRe = []
         self.message['text'] = 'ゲームをリセットしました'
-"""
+    """
     #ゲームのリプレイ
     def r_key(self):
         print('ボタンの文字初期化')
@@ -159,8 +163,9 @@ class MyFrame(tk.Frame):
         self.b7['text'] = '　'
         self.b8['text'] = '　'
         self.b9['text'] = '　'
+        tk.after(1)
         self.message['text'] = 'リプレイ中'
-        self.after(1000)
+
         for i in range(len(self.boardRe)):
             if i%2 == 0:
                 text = "○"
@@ -186,8 +191,12 @@ class MyFrame(tk.Frame):
             elif i == 8:
                 self.b9['text'] = text
             print('リプレイループ',i,' 表示文字は',text)
+            time.sleep(0.5)
         self.message['text'] = 'リプレイ終了'
-"""
+    """
+        
+            
+
 
 #メインプログラム
 root = tk.Tk()
