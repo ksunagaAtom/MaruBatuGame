@@ -66,6 +66,7 @@ class MyFrame(tk.Frame):
         return False
 
     def key(self,n,row,column):
+        #keyメソッドの制限
         if self.turnCount < 9:
             #表示文字の入れ替え
             if self.turnFlag == 1:
